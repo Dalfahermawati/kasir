@@ -1,17 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Kasir Ayam Bakar Idaman</title>
-  <h1>Ayam Bakar Idaman Sentul</h1>
+  
+  <h1>Menu Ayam Bakar Idaman Sentul</h1>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-  <script src="//unpkg.com/systemjs@0.19.47/dist/system.js"></script>
+  <style>
+    body {
+      font-size: smaller;
+    }
+    .card {
+      width: 7rem;
+      padding: 0;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body {
+      padding: 0.5rem;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
-  <script src="config.js"></script>
+<body class="d-flex flex-column h-100">
+  <div>
+
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+
+        <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-fill"></i></a>
+        <a class="nav-link" href="index.html"><i class="bi bi-basket2"></i></a>
+        <a class="nav-link" href="#"><i class="bi bi-person-fill"></i></a>
+        <a class="nav-link" href="#"><i class="bi bi-box-arrow-right"></i></a>
+
+      </div>
+    </nav>
+
+    <div class="m-2">
+      <div class="container-fluid">
+        <div class="row" id="daftar-barang">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="text-right font-bold">
+    <p>
+    </p>
+   </div>
+   <a href="rincian.html">
+     
+   
+    <button type="submit" class="btn btn-primary" id="tombol-tambah">Pembayaran>></button>
+</a>
+  <footer class="py-3 bg-dark-subtle mt-auto">
+    <p class="text-center text-body-secondary">&copy; 2024 Ayam Bakar Idaman</p>
+  </footer>
+
+  <script type="module">
+ 
+import {ambilDaftarproduk} from './main.js';
+   
+     $(document).ready(async function(){
+  let elemendaftar = $("#daftar-barang");
+  let daftarproduk = await ambilDaftarproduk();
+
+  daftarproduk.forEach((data)=>{
+    elemendaftar.append(
+          '<div class="card">' +
+          '<img id="' + data.id + '" src="https://picsum.photos/100/60" class="card-img-top">' +
+          '<div class="card-body">' +
+          '<span>' + data.namaProduk + ', ' + data.harga + '</span>' +
+          '</div>' +
+          '</div>' 
+        );
+      });
+    });
+  </script>
 </body>
+
 </html>
+
